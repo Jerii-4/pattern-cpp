@@ -7,7 +7,6 @@ int main()
     cout << "Enter two numbers: ";
     cin >> a >> b;
 
-    // Store original numbers for output
     int num1 = a;
     int num2 = b;
 
@@ -23,7 +22,6 @@ int main()
         }
     }
 
-    // When one number becomes 0, other number is GCD
     if (a == 0)
     {
         cout << "GCD of " << num1 << " and " << num2 << " is: " << b << endl;
