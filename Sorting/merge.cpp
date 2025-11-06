@@ -44,9 +44,9 @@ void merge(int arr[], int low, int mid, int high)
     }
 
     // Copy back to original array
-    for (int i = 0; i <= high - low; i++)
+    for (int i = low; i <= high; i++)
     {
-        arr[low + i] = temp[i];
+        arr[i] = temp[i - low];
     }
 }
 
