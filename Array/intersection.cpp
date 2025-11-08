@@ -1,28 +1,52 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> IntersectionSet(vector<int> &a, vector<int> &b)
+vector<int> IntersectionSet(vector<int> &a, vector<int> &b, int n1, int n2)
 {
     int i = 0, j = 0;
     vector<int> unionArray;
 
-    int Visited[b.size()] = {0};
+    // brute
+    //  int Visited[b.size()] = {0};
 
-    for (int i = 0; i < a.size(); i++)
+    // for (int i = 0; i < a.size(); i++)
+    // {
+    //     for (int j = 0; j < b.size(); j++)
+    //     {
+    //         if (a[i] == b[j] && Visited[j] == 0)
+    //         {
+    //             unionArray.push_back(a[i]);
+    //             Visited[j] = 1;
+    //             break;
+    //         }
+    //     }
+    //     // if (a[i] < b[j])
+    //     // {
+    //     //     break;
+    //     // }
+    // }
+
+    // optimal
+
+    while (i < n1 && j < n2)
     {
-        for (int j = 0; j < b.size(); j++)
+        if (a[i] == b[j])
         {
-            if (a[i] == b[j] && Visited[j] == 0)
-            {
-                unionArray.push_back(a[i]);
-                Visited[j] = 1;
-                break;
-            }
+            unionArray.push_back(a[i]);
+            i++;
+            j++;
         }
-        // if (a[i] < b[j])
-        // {
-        //     break;
-        // }
+        else if (a[i] < b[j])
+        {
+            i++;
+        }
+        else
+        {
+            j++;
+        }
+
+        if (i == n1)
+            break;
     }
 
     return unionArray;
@@ -43,7 +67,7 @@ int main()
         cin >> b[j];
     }
 
-    vector<int> UnionArray = IntersectionSet(a, b);
+    vector<int> UnionArray = IntersectionSet(a, b, n1, n2);
 
     for (auto it : UnionArray)
     {
