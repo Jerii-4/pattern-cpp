@@ -8,25 +8,23 @@ struct Node
     Node *right;
     Node(int val) : data(val), left(nullptr), right(nullptr) {}
 };
-
 class Solution
 {
 public:
-    void preorder(Node *root, vector<int> &arr)
+    void postorder(vector<int> &arr, Node *root)
     {
         if (root == nullptr)
         {
             return;
+            postorder(arr, root->left);
+            postorder(arr, root->right);
+            arr.push_back(root->data);
         }
-        arr.push_back(root->data);
-        preorder(root->left, arr);
-        preorder(root->right, arr);
     }
-
-    vector<int> preOrder(Node *root)
+    vector<int> postOrder(Node *root)
     {
         vector<int> arr;
-        preorder(root, arr);
+        postorder(arr, root);
         return arr;
     }
 };
@@ -42,9 +40,9 @@ int main()
 
     Solution sol;
 
-    vector<int> result = sol.preOrder(root);
+    vector<int> result = sol.postOrder(root);
 
-    cout << "Preorder Traversal: ";
+    cout << "PostOrder Traversal: ";
     for (int val : result)
     {
         cout << val << " ";
