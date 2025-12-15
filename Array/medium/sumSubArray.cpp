@@ -12,7 +12,10 @@ int countSubarraysWithSumK(const vector<int> &arr, int k)
     {
         prefixSum += arr[i];
         int remove = prefixSum - k;
-        count += prefixCount[remove];
+        if (prefixCount.find(remove) != prefixCount.end())
+        {
+            count += prefixCount[remove];
+        }
         prefixCount[prefixSum]++;
     }
     return count;
