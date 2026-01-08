@@ -1,44 +1,37 @@
-
-
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution
+{
+public:
+    vector<int> twoSum(vector<int> &arr, int n,int target)
+    {
+     unordered_map<int,int> mapp;
+      
+     for(int i=0;i<n;i++){
+        int needed=target- arr[i];
+        if(mapp.count(needed)) {
+        return {mapp[needed],i};
+        }
+        mapp[arr[i]]=i;
+     }
+       
+       return{};
+    }
+};
+
+// Driver code
 int main()
 {
-    int n, i;
-    cin >> n;
+    vector<int> arr = {-1, 0, 1, 2, -1, -4};
+    int n = arr.size();
+    int target = 3;
+    Solution obj;
+    vector<int> res = obj.twoSum(arr, n, target);
 
-    vector<pair<int, int>> arr(n);
-    // {value, original_index}
-
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i].first;
-        arr[i].second = i;
-    }
-
-    int target;
-    cout << "Enter target: ";
-    cin >> target;
-    i = 0;
-    int j = n - 1;
-    sort(arr.begin(), arr.end());
-    while (i < j)
-    {
-
-        if (arr[i].first + arr[j].first == target)
-        {
-            cout << arr[i].second << " " << arr[j].second << endl;
-            break;
-        }
-        else if (arr[i].first + arr[j].first < target)
-        {
-            i++;
-        }
-        else
-        {
-            j--;
-        }
+    for (auto &num : res){
+        cout << num << " ";
+        cout << endl;
     }
     return 0;
 }
